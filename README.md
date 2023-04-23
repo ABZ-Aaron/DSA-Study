@@ -1,5 +1,73 @@
 # Data Structures & Algorithms
 
-The purpose of this repo is to track my progress as I learn Data Structures & Algorithms.
+The purpose of this repo is to track my progress as I learn Data Structures & Algorithms using Python.
 
 I will be working through this [coding interview study plan](https://www.techinterviewhandbook.org/coding-interview-study-plan/).
+
+Although this is mainly interview prep, I'll be using it as an opportunity to develop my DS&A skills.
+
+## WEEK 1
+
+### Arrays
+
+Arrays hold values of the same type at contiguous memory locations.
+
+In Python we typically know this as a `List` but you can also use do something like:
+
+```python
+balance = array.array('i', [300, 200, 100])
+```
+
+With 'i' being the data type, and the [300, 200, 100] being the elements of the array.
+
+They are among the most common data structures.
+
+The advantage of an Array is that you can store multiple elements under one single variable name. You can also quickly access elements (assuming you know the index).
+
+The disadvantage of an Array is that it can be slow to remove element or add them to the middle of an array, because remaining elements need to be shifted to accommodate the new or missing element.
+
+In an array, each element has an index which is used to access the element.
+
+```python
+# access element
+balance[1]
+
+# insert an element
+balance.insert(index, 2)
+
+# delete an element
+balance.remove(2)
+
+# search an array
+balance.index(150)
+
+# update an array
+balance[2] = 1
+
+# traverse array
+for x in balance:
+    print(x)
+```
+
+For arrays, reading and writing elements is constant time. Adding or removing from the end is constant.
+
+However, removing the first element means we have to move all the values down in memory. This is O of N. This is true for adding to the beginning, as well as adding or removing from the middle.
+
+Simple arithmetic is used to know where we're going in the array.
+
+Searching an array is log of N.
+
+#### Leetcode Problems
+
+TWO SUM
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+```
+
+BEST TIME TO BUY AND SELL STOCK
