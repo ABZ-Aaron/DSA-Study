@@ -1,28 +1,23 @@
-nums = [1,2,3,4]
-queries = [[1,0],[-3,1],[-4,0],[2,3]]
-
-S = sum(x for x in nums if x % 2 == 0)
-
-answer = []
-
-for value, index in queries:
-
-    if nums[index] % 2 == 0: 
-        S -= nums[index]
-    print(S)
-    nums[index] += value
-
-    if nums[index] % 2 == 0: 
-        S += nums[index]
-
-    print(S)
-    answer.append(S)
-
-print(answer)
-
 """
-After adding 1 to nums[0], the array is [2,2,3,4], and the sum of even values is 2 + 2 + 4 = 8.
-After adding -3 to nums[1], the array is [2,-1,3,4], and the sum of even values is 2 + 4 = 6.
-After adding -4 to nums[0], the array is [-2,-1,3,4], and the sum of even values is -2 + 4 = 2.
-After adding 2 to nums[3], the array is [-2,-1,3,6], and the sum of even values is -2 + 6 = 4.
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
 """
+
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+current = nums[0]
+maximum = nums[0]
+
+for num in nums[1:]:
+    if num > current + num:
+        current = num
+    else:
+        current += num
+    
+    if current > maximum:
+        maximum = current
+
+print(maximum)
+
+

@@ -71,3 +71,63 @@ class Solution:
 ```
 
 BEST TIME TO BUY AND SELL STOCK
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        minimum = float("inf")
+        maximum = 0
+        for i in range(len(prices)):
+            if prices[i] < minimum:
+                minimum = prices[i]
+            elif prices[i] - minimum > maximum:
+                maximum = prices[i] - minimum
+            print(maximum)
+        return maximum
+```
+
+PRODUCT OF ARRAY EXCEPT SELF
+
+```python
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        prefix = [1]*len(nums)
+        count = 1
+        for i in range(len(nums)):
+            prefix[i] = count
+            count *= nums[i]
+
+        postfix = [1]*len(nums)
+        count = 1
+        for i in range(len(nums) - 1, -1, -1):
+            postfix[i] = count
+            count *= nums[i]
+
+        answer = []
+        for k, v in zip(prefix, postfix):
+            answer.append(k * v)
+
+        return answer
+```
+
+MAXIMUM SUBARRAY
+
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        current = nums[0]
+        maximum = nums[0]
+
+        for num in nums[1:]:
+            if num > current + num:
+                current = num
+            else:
+                current += num
+
+            if current > maximum:
+                maximum = current
+
+        return maximum
+```
+
+### Strings
