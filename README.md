@@ -131,3 +131,70 @@ class Solution:
 ```
 
 ### Strings
+
+Strings are a sequence of characters. May tips that apply to arrays will also apply to strings. Time complexity will also be similar.
+
+Access = O of 1
+Search = O of n
+Insert = O of n
+Remove = O of n
+
+VALID ANAGRAM
+
+```python
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        dict1 = {}
+        dict2 = {}
+
+        for i in s:
+            if i in dict1:
+                dict1[i] += 1
+            else:
+                dict1[i] = 1
+
+        for i in t:
+            if i in dict2:
+                dict2[i] += 1
+            else:
+                dict2[i] = 1
+
+        if dict1 == dict2:
+            return True
+        else:
+            return False
+```
+
+VALID PALINDROME
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        valid = "abcdefghijklmnopqrstuvwxyz0123456789"
+        new = ""
+        for char in s:
+            char = char.lower()
+            if char in valid:
+                new += char
+
+        if new == new[::-1]:
+            return True
+        else:
+            return False
+```
+
+LONGEST SUBSTRING WITHOUT REPEATING CHARACTERS
+
+```python
+        charSet = set()
+        l = 0
+        res = 0
+
+        for r in range(len(s)):
+            while s[r] in charSet:
+                charSet.remove(s[l])
+                l += 1
+            charSet.add(s[r])
+            res = max(res, r - l + 1)
+        return res
+```
