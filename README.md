@@ -198,3 +198,52 @@ for r in range(len(s)):
     res = max(res, r - l + 1)
 return res
 ```
+
+### Hash Tables
+
+A data structure that implements associative array abstract data type, a structure that can map keys to values.
+
+It uses a hash function on an element to compute an index into an array of buckets or slots from which the desired value can be found.
+
+During lookup, the key is hashed and the resulting hash indicates where the corresponding value is stored.
+
+This structure is a good example of space-time tradeoff. We can traverse an array once and hash all elements into a hash table. Then determining if the element is present is a simple matter of hashing the element and seeing if it exists in the hash table, which is O(1).
+
+TWO SUM
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        maps = {}
+        for i in range(len(nums)):
+            value = target - nums[i]
+            if value in maps:
+                return [i, maps[value]]
+            maps[nums[i]] = i
+```
+
+RANSOM NOTE
+
+```python
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        rhash = dict()
+        mhash = dict()
+
+        for i in range(len(ransomNote)):
+            if ransomNote[i] not in rhash:
+                rhash[ransomNote[i]] = 1
+            else:
+                rhash[ransomNote[i]] += 1
+
+        for i in range(len(magazine)):
+            if magazine[i] not in mhash:
+                mhash[magazine[i]] = 1
+            else:
+                mhash[magazine[i]] += 1
+
+        for k, v in rhash.items():
+            if (k not in mhash) or (k in mhash and mhash[k] < v):
+                return False
+        return True
+```
